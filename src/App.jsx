@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from 'react-router-dom';
+import PageStart from './pages/PageStart';
+import PageInvest from './pages/PageInvest';
+import PageDrawdown from './pages/PageDrawdown';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          This Website works but since it's been clicked by Ckwok herself I hope it doesn't.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <div></div>
+        <Routes>
+          <Route path="/" element={<PageStart />} />
+          <Route path="/investment-option" element={<PageInvest />} />
+          <Route path="/drawdown-payment" element={<PageDrawdown />} />
+        </Routes>
+      </BrowserRouter>    
+    </>
   );
 }
 
