@@ -15,10 +15,11 @@ import {
   Bars3Icon,
   ChartPieIcon,
   CursorArrowRaysIcon,
-  FingerPrintIcon,
+  UserCircleIcon,
   SquaresPlusIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import logo from '../assets/logo.svg';
 import definition from '../assets/definition.png';
@@ -29,11 +30,9 @@ import profile from '../assets/profile.png';
 const PageStart = () => {
 
     const products = [
-        { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-        { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-        { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-        { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-        { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+        { name: 'Personas', description: 'Building emotional connections', href: '#', icon: UserCircleIcon },
+        { name: 'Visualisations', description: 'Drawdown simulations and calculators', href: '#', icon: ChartPieIcon },
+        { name: 'Educational Tools', description: 'Enhancing information architecture', href: '#', icon: CursorArrowRaysIcon },
     ]
 
     const callsToAction = [
@@ -82,7 +81,7 @@ const PageStart = () => {
             <header className="bg-white">
                 <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
                     <div className="flex lg:flex-1">
-                        <a href="#" className="-m-1.5 p-1.5">
+                        <a href="" className="-m-1.5 p-1.5">
                             <img
                             alt="logo"
                             src={logo}
@@ -117,7 +116,7 @@ const PageStart = () => {
                                         className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                                     >
                                         <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <item.icon aria-hidden="true" className="size-6 text-gray-600 group-hover:text-indigo-600" />
+                                        <item.icon aria-hidden="true" className="size-6 text-gray-600 group-hover:text-[#F61563]" />
                                         </div>
                                         <div className="flex-auto">
                                         <a href={item.href} className="block font-semibold text-gray-900">
@@ -212,7 +211,7 @@ const PageStart = () => {
                     </DialogPanel>
                 </Dialog>
             </header>
-            <div className="bg-white py-8 sm:py-16">
+            <div className="bg-white py-8 sm:pt-16 sm:pb-0">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl lg:mx-0">
                         <h1 className="text-pretty text-6xl font-semibold tracking-tight text-gray-900 sm:text-7xl pb-4">Aware4U</h1>
@@ -246,7 +245,7 @@ const PageStart = () => {
                     </div>
                 </div>
             </div>
-            <section className="relative isolate overflow-hidden bg-white px-6 lg:px-8" id="The-Challenge">
+            <section className="relative isolate overflow-hidden bg-white px-6 lg:px-8 pt-16" id="The-Challenge">
                 <div className="mx-auto max-w-2xl lg:max-w-4xl">
                     <h2 className="mx-auto h-6 text-3xl text-center font-bold">The Challenge</h2>
                     <figure className="mt-10">
@@ -274,9 +273,9 @@ const PageStart = () => {
             </section>
             <div className="bg-gray-50 py-24 sm:py-32">
                 <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-                    <h2 className="text-center text-base/7 font-semibold text-[#F61563]">Aware4U aims to address this challenge through</h2>
+                    <h2 className="text-center text-base/7 font-semibold text-[#F61563]">Aware4U aims to address this challenge our tailored solutions</h2>
                     <p className="mx-auto mt-2 max-w-lg text-balance text-center text-5xl font-semibold tracking-tight text-gray-950 sm:text-6xl">
-                    Our Solutions
+                    Aware4U Solutions
                     </p>
                     <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
                     <div className="relative lg:row-span-2">
@@ -284,10 +283,10 @@ const PageStart = () => {
                         <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
                         <div className="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
                             <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
-                            Mobile friendly
+                            Education tools
                             </p>
                             <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
+                            A tailored information architecture that saves looked-up words for future reference. 
                             </p>
                         </div>
                         <div className="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
@@ -306,9 +305,9 @@ const PageStart = () => {
                         <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
                         <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
                             <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Performance</p>
+                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Retirement Personas</p>
                                 <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit maiores impedit.
+                                    Enhancing information architecture by building emotional connections.
                                 </p>
                             </div>
                             <div className="flex flex-1 items-center justify-center px-2 max-lg:pb-10 max-lg:pt-10 sm:px-4 lg:pb-2">
@@ -325,9 +324,9 @@ const PageStart = () => {
                         <div className="absolute inset-px rounded-lg bg-white"></div>
                         <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)]">
                             <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Security</p>
+                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Financial Tools</p>
                                 <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                                Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi.
+                                    Incorporating frontend components such as modal pop-ups and tooltips.
                                 </p>
                             </div>
                             <div className="flex flex-1 items-center justify-center px-4 max-lg:pb-12 max-lg:pt-10 sm:px-6 lg:pb-2">
@@ -343,37 +342,86 @@ const PageStart = () => {
                     <div className="relative lg:row-span-2">
                         <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
                         <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
-                        <div className="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
-                            <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
-                            Powerful APIs
-                            </p>
-                            <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                            Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget sem sodales gravida.
-                            </p>
-                        </div>
-                        <div className="relative min-h-[30rem] w-full grow">
-                            <div className="absolute bottom-0 left-10 right-0 top-10 overflow-hidden rounded-tl-xl bg-white shadow-2xl">
-                            <div className="flex bg-gray-100/40 ring-1 ring-white/5">
-                                <div className="-mb-px flex text-sm/6 font-medium text-gray-400">
-                                <div className="border-b border-r border-b-gray/20 border-r-black/10 bg-white/5 px-4 py-2 text-grey">
-                                    Account setup
-                                </div>
-                                <div className="border-r border-black-600/10 px-4 py-2 text-black">Retiree profile</div>
+                            <div className="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
+                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                                    Drawdown Simulations
+                                </p>
+                                <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                                Using visualisations and income calculations to smooth consumption over the lifecycle.
+                                </p>
+                            </div>
+                            <div className="relative min-h-[30rem] w-full grow">
+                                <div className="absolute bottom-0 left-4 right-0 top-10 overflow-hidden rounded-tl-xl bg-white">
+                                    <div className="px-2 pb-2 pt-2"><img
+                                        className="size-full object-cover object-top"
+                                        src={profile}
+                                        alt=""
+                                    /></div>
                                 </div>
                             </div>
-                            <div className="px-2 pb-2 pt-2"><img
-                                className="size-full object-cover object-top"
-                                src={profile}
-                                alt=""
-                            /></div>
                             </div>
+                            <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
                         </div>
-                        </div>
-                        <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
-                    </div>
                     </div>
                 </div>
+            </div>
+            <div className="bg-gray-50">
+                <div className="relative isolate overflow-hidden bg-gray-50 px-6 pt-16 sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+                <svg
+                    viewBox="0 0 1024 1024"
+                    aria-hidden="true"
+                    className="absolute left-1/2 top-1/2 -z-10 size-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0"
+                >
+                    <circle r={512} cx={512} cy={512} fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fillOpacity="0.7" />
+                    <defs>
+                    <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
+                        <stop stopColor="#F61563" />
+                        <stop offset={1} stopColor="#F61563" />
+                    </radialGradient>
+                    </defs>
+                </svg>
+                <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+                    <h2 className="text-balance text-3xl font-semibold tracking-tight text-black sm:text-4xl">
+                    View Aware4U's solutions in action.
+                    </h2>
+                    <p className="mt-6 text-pretty text-lg/8 text-gray-500">
+                    Aware4U is committed to improving the financial wellbeing of retirees by addressing the root causes of superannuation challenges.
+                    </p>
+                    <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+                    <Link
+                        to="/investment-option"
+                        className="rounded-md bg-[#F61563] px-3.5 py-2.5 text-sm font-semibold text-white hover:text-[#F61563] shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-all duration-200 ease-in-out"
+                    >
+                        Start demonstration
+                    </Link>
+                    <Link 
+                        to="/publications"
+                        className="text-sm/6 font-semibold text-[#F61563]">
+                        View publications <span aria-hidden="true">→</span>
+                    </Link>
+                    </div>
                 </div>
+                <div className="relative mt-16 h-80 lg:mt-8">
+                    <img
+                    alt="App screenshot"
+                    src="https://tailwindui.com/plus/img/component-images/dark-project-app-screenshot.png"
+                    width={1824}
+                    height={1080}
+                    className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
+                    />
+                </div>
+                </div>
+            </div>
+            <footer className="bg-white text-black py-10">
+                <div className="container mx-auto text-center">
+                    <p className="text-sm">&copy; 2024 Aware4U. All rights reserved.</p>
+                    <div className="mt-4">
+                        <a href="#about" className="text-gray-400 hover:text-[#F61563] mx-2">About</a>
+                        <a href="#services" className="text-gray-400 hover:text-[#F61563] mx-2">Services</a>
+                        <a href="#contact" className="text-gray-400 hover:text-[#F61563] mx-2">Contact</a>
+                    </div>
+                </div>
+            </footer>
         </>
     );
 };

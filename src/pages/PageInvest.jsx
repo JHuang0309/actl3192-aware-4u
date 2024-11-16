@@ -1,7 +1,7 @@
 const PageInvest = () => {
     return (
         <>
-            PageInvest
+            Bro relax I'm still making this page
         </>
     );
 };
