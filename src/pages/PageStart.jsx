@@ -35,11 +35,6 @@ const PageStart = () => {
         { name: 'Educational Tools', description: 'Enhancing information architecture', href: '#', icon: CursorArrowRaysIcon },
     ]
 
-    const callsToAction = [
-        { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-        { name: 'Contact sales', href: '#', icon: PhoneIcon },
-    ]
-
     const team = [
         {
             name: "Jayden Huang",
@@ -138,9 +133,9 @@ const PageStart = () => {
                         </a>
                     </PopoverGroup>
                     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                        <a href="#" className="text-sm/6 font-semibold text-gray-900">
+                        <Link to="/investment-option" className="text-sm/6 font-semibold text-gray-900">
                             Set up your account <span aria-hidden="true">&rarr;</span>
-                        </a>
+                        </Link>
                     </div>
                 </nav>
                 {/* Mobile (small screen) Menu */}
@@ -168,22 +163,22 @@ const PageStart = () => {
                         <div className="-my-6 divide-y divide-gray-500/10">
                         <div className="space-y-2 py-6">
                             <Disclosure as="div" className="-mx-3">
-                            <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                                Our Solutions
-                                <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
-                            </DisclosureButton>
-                            <DisclosurePanel className="mt-2 space-y-2">
-                                {[...products, ...callsToAction].map((item) => (
-                                <DisclosureButton
-                                    key={item.name}
-                                    as="a"
-                                    href={item.href}
-                                    className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                                >
-                                    {item.name}
+                                <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                                    Our Solutions
+                                    <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
                                 </DisclosureButton>
+                                <DisclosurePanel className="mt-2 space-y-2">
+                                {[...products].map((item) => (
+                                    <DisclosureButton
+                                        key={item.name}
+                                        as="a"
+                                        href={item.href}
+                                        className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                    >
+                                        {item.name}
+                                    </DisclosureButton>
                                 ))}
-                            </DisclosurePanel>
+                                </DisclosurePanel>
                             </Disclosure>
                             <a
                             href="#The-Challenge"
@@ -278,68 +273,68 @@ const PageStart = () => {
                     Aware4U Solutions
                     </p>
                     <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
-                    <div className="relative lg:row-span-2">
-                        <div className="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
-                        <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
-                        <div className="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
-                            <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
-                            Education tools
-                            </p>
-                            <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                            A tailored information architecture that saves looked-up words for future reference. 
-                            </p>
+                        <div className="relative lg:row-span-2">
+                            <div className="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
+                            <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
+                            <div className="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
+                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                                Education tools
+                                </p>
+                                <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                                A tailored information architecture that saves looked-up words for future reference. 
+                                </p>
+                            </div>
+                            <div className="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
+                                <div className="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-white shadow-2xl">
+                                    <img
+                                        className="size-full object-cover object-top"
+                                        src={dictionary}
+                                        alt=""
+                                    />
+                                </div>
+                            </div>
+                            </div>
+                            <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-l-[2rem]"></div>
                         </div>
-                        <div className="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
-                            <div className="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-white shadow-2xl">
-                                <img
-                                    className="size-full object-cover object-top"
-                                    src={dictionary}
+                        <div className="relative max-lg:row-start-1">
+                            <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
+                            <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
+                                <div className="px-8 pt-8 sm:px-10 sm:pt-10">
+                                    <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Retirement Personas</p>
+                                    <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                                        Enhancing information architecture by building emotional connections.
+                                    </p>
+                                </div>
+                                <div className="flex flex-1 items-center justify-center px-2 max-lg:pb-10 max-lg:pt-10 sm:px-4 lg:pb-2">
+                                    <img
+                                    className="w-full max-lg:max-w-xs"
+                                    src={personas}
                                     alt=""
-                                />
+                                    />
+                                </div>
                             </div>
+                            <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]"></div>
                         </div>
+                        <div className="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
+                            <div className="absolute inset-px rounded-lg bg-white"></div>
+                            <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)]">
+                                <div className="px-8 pt-8 sm:px-10 sm:pt-10">
+                                    <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Financial Tools</p>
+                                    <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                                        Incorporating frontend components such as modal pop-ups and tooltips.
+                                    </p>
+                                </div>
+                                <div className="flex flex-1 items-center justify-center px-4 max-lg:pb-12 max-lg:pt-10 sm:px-6 lg:pb-2">
+                                    <img
+                                    className="w-full max-lg:max-w-xs"
+                                    src={definition}
+                                    alt=""
+                                    />
+                                </div>
+                            </div>
+                            <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
                         </div>
-                        <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-l-[2rem]"></div>
-                    </div>
-                    <div className="relative max-lg:row-start-1">
-                        <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
-                        <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
-                            <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Retirement Personas</p>
-                                <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                                    Enhancing information architecture by building emotional connections.
-                                </p>
-                            </div>
-                            <div className="flex flex-1 items-center justify-center px-2 max-lg:pb-10 max-lg:pt-10 sm:px-4 lg:pb-2">
-                                <img
-                                className="w-full max-lg:max-w-xs"
-                                src={personas}
-                                alt=""
-                                />
-                            </div>
-                        </div>
-                        <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]"></div>
-                    </div>
-                    <div className="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
-                        <div className="absolute inset-px rounded-lg bg-white"></div>
-                        <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)]">
-                            <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Financial Tools</p>
-                                <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                                    Incorporating frontend components such as modal pop-ups and tooltips.
-                                </p>
-                            </div>
-                            <div className="flex flex-1 items-center justify-center px-4 max-lg:pb-12 max-lg:pt-10 sm:px-6 lg:pb-2">
-                                <img
-                                className="w-full max-lg:max-w-xs"
-                                src={definition}
-                                alt=""
-                                />
-                            </div>
-                        </div>
-                        <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
-                    </div>
-                    <div className="relative lg:row-span-2">
+                        <div className="relative lg:row-span-2">
                         <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
                         <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
                             <div className="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
@@ -382,10 +377,10 @@ const PageStart = () => {
                 </svg>
                 <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
                     <h2 className="text-balance text-3xl font-semibold tracking-tight text-black sm:text-4xl">
-                    View Aware4U's solutions in action.
+                        View Aware4U's solutions in action.
                     </h2>
                     <p className="mt-6 text-pretty text-lg/8 text-gray-500">
-                    Aware4U is committed to improving the financial wellbeing of retirees by addressing the root causes of superannuation challenges.
+                        Aware4U is committed to improving the financial wellbeing of retirees by addressing the root causes of superannuation challenges.
                     </p>
                     <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
                     <Link
