@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Hello <code>src/App.js</code> and do something cool.
+          This Website works but since it's been clicked by Ckwok herself I hope it doesn't.
         </p>
         <a
           className="App-link"
