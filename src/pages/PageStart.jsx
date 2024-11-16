@@ -44,7 +44,7 @@ const PageStart = () => {
             degree: "Actuarial Studies / Computer Science"
         },
         {
-            name: "Connie Due",
+            name: "Connie Du",
             imageUrl: "https://media.licdn.com/dms/image/v2/D5603AQEzs0CUqRJ5PQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1701693548230?e=1736985600&v=beta&t=DBMqoe_rL40mQniH97ZBmfSAnwYxfNty6Ra1lltcXJk",
             degree: "Actuarial Studies / Computer Science"
         },
@@ -270,9 +270,9 @@ const PageStart = () => {
             </section>
             <div className="bg-gray-50 py-24 sm:py-32">
                 <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-                    <h2 className="text-center text-base/7 font-semibold text-indigo-600">Deploy faster</h2>
+                    <h2 className="text-center text-base/7 font-semibold text-indigo-600">Olly ur not funny</h2>
                     <p className="mx-auto mt-2 max-w-lg text-balance text-center text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">
-                    Kirsten ur gay
+                    Kirsten please don't do anything stupid.
                     </p>
                     <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
                     <div className="relative lg:row-span-2">
