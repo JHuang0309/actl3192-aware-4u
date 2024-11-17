@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 const Dictionary = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
     const dictionary = [
         {
             word: 'indexation',
@@ -89,11 +88,6 @@ const Dictionary = () => {
     const handleSearchChange = (e) => {
         const query = e.target.value;
         setSearchQuery(query);
-        if (query && filteredDictionary.length === 0) {
-            setErrorMessage('No matching word found');
-        } else {
-            setErrorMessage('');
-        }
     };
 
     return (
