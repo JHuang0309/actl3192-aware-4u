@@ -660,7 +660,10 @@ const PageDrawdown = () => {
                                     className="w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-h-40 max-sm:h-40 sm:aspect-[2/1] lg:aspect-square"
                                     />
                                     <h3 className="mt-6 text-base font-semibold text-gray-900">
-                                    <Link to={callout.href}>
+                                    <Link to={callout.href}onClick={(e) => {
+                                        e.preventDefault();  // Prevent the default Link behavior
+                                        window.open(callout.href, '_blank');
+                                        }} className="relative">
                                         <span className="absolute inset-0" />
                                         {callout.name}
                                     </Link>
