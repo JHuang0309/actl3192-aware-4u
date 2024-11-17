@@ -271,7 +271,7 @@ const PageStart = () => {
             </section>
             <div className="bg-gray-50 py-24 sm:py-32">
                 <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-                    <h2 className="text-center text-base/7 font-semibold text-[#F61563]">Aware4U aims to address this challenge our tailored solutions</h2>
+                    <h2 className="text-center text-base/7 font-semibold text-[#F61563]">Aware4U aims to address this challenge through our tailored solutions</h2>
                     <p className="mx-auto mt-2 max-w-lg text-balance text-center text-5xl font-semibold tracking-tight text-gray-950 sm:text-6xl">
                     Aware4U Solutions
                     </p>
