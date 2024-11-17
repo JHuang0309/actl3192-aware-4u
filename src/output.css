@@ -864,6 +864,10 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.box-border {
+  box-sizing: border-box;
+}
+
 .line-clamp-3 {
   overflow: hidden;
   display: -webkit-box;
@@ -1793,6 +1797,11 @@ video {
   line-height: 1.75rem;
 }
 
+.text-lg\/4 {
+  font-size: 1.125rem;
+  line-height: 1rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -2485,6 +2494,10 @@ video {
 
   .sm\:min-h-\[132px\] {
     min-height: 132px;
+  }
+
+  .sm\:min-h-\[360px\] {
+    min-height: 360px;
   }
 
   .sm\:w-auto {

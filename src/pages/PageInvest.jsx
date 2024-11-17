@@ -315,7 +315,7 @@ const PageInvest = () => {
                 </div>
             </section>
             <section className="flex px-8 lg:px-10 mx-6 lg:mx-10 flex-col">
-                <div className='text-lg/8 text-gray-600'>
+                <div className='text-md/7 text-gray-600'>
                     <p className='mb-4'>Choose how you'd like to invest the funds in your new Retirement Account</p>
                     <p>Select your preferred investment strategy from the four options below:</p>
                 </div>
@@ -324,7 +324,7 @@ const PageInvest = () => {
                         <div className="absolute inset-px rounded-lg bg-white lg:rounded-[2rem]"></div>
                         <div className={`relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)] ${cbBorder} transition-all duration-200 ease-in-out`}>
                             <div className="px-6 py-6 sm:px-6 sm:py-6">
-                                <div className='sm:min-h-[335px]'>
+                                <div className='sm:min-h-[360px]'>
                                     <div className='sm:min-h-[132px]'>
                                         <p className="mt-2 mb-4 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
                                             The Conservative Balanced Portfolio
@@ -392,7 +392,7 @@ const PageInvest = () => {
                         <div className="absolute inset-px rounded-lg bg-white lg:rounded-[2rem]"></div>
                         <div className={`relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)] ${bBorder} transition-all duration-200 ease-in-out`}>
                             <div className="px-6 py-6 sm:px-6 sm:py-6">
-                                <div className='sm:min-h-[335px]'>
+                                <div className='sm:min-h-[360px]'>
                                     <div className='sm:min-h-[132px]'>
                                         <p className="mt-2 mb-4 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
                                             The Balanced Portfolio
@@ -411,7 +411,7 @@ const PageInvest = () => {
                                         >{bBtnText}</button>
                                     </div>
                                     <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                                        This portfolio invests in a wide range of assets with a focus on growth assets. Designed to have medium- to long-term growth with possible short-term fluctuations.
+                                        This portfolio invests in a wide range of assets with a focus on growth assets. Designed to have medium- to long- term growth with possible short-term fluctuations.
                                     </p>
                                 </div>
                                 <p className="mt-4 text-lg tracking-tight text-gray-900 max-lg:text-center">
@@ -460,7 +460,7 @@ const PageInvest = () => {
                         <div className="absolute inset-px rounded-lg bg-white lg:rounded-[2rem]"></div>
                         <div className={`relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)] ${gBorder} transition-all duration-200 ease-in-out`}>
                             <div className="px-6 py-6 sm:px-6 sm:py-6">
-                                <div className='sm:min-h-[335px]'>
+                                <div className='sm:min-h-[360px]'>
                                     <div className='sm:min-h-[132px]'>
                                         <p className="mt-2 mb-4 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
                                             The Growth Portfolio
@@ -543,7 +543,7 @@ const PageInvest = () => {
                         <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-[2rem]"></div>
                     </div>  
                 </div>
-                <div className='text-lg/8 text-gray-600 mt-12'>
+                <div className='text-md/7 text-gray-600 mt-12'>
                     <p className='mb-4'>If you have any investment transactions in progress, such as a rollover or a change of investment choice, your new Retirement Account will be established after these transactions are complete. You can track any in-progress transactions in Member Online under <a href='' className="underline text-[#F61563]">My activities</a>.</p>
                     <p>Find out more about Aware4U's <a href='' className="underline text-[#F61563]">Investment options</a></p>
                 </div>
