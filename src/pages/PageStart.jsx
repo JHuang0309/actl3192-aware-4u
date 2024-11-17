@@ -11,21 +11,21 @@ import {
   PopoverPanel,
 } from '@headlessui/react'
 import {
-  ArrowPathIcon,
   Bars3Icon,
   ChartPieIcon,
   CursorArrowRaysIcon,
   UserCircleIcon,
-  SquaresPlusIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import logo from '../assets/logo.svg';
 import definition from '../assets/definition.png';
 import dictionary from '../assets/dictionary.png';
 import personas from '../assets/personas.png';
 import profile from '../assets/profile.png';
+import investPage from '../assets/investPage.png'
+
 
 const PageStart = () => {
 
@@ -133,9 +133,9 @@ const PageStart = () => {
                         </a>
                     </PopoverGroup>
                     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                        <Link to="/investment-option" className="text-sm/6 font-semibold text-gray-900">
+                        <a href='#demonstration' className="text-sm/6 font-semibold text-gray-900">
                             Set up your account <span aria-hidden="true">&rarr;</span>
-                        </Link>
+                        </a>
                     </div>
                 </nav>
                 {/* Mobile (small screen) Menu */}
@@ -209,7 +209,7 @@ const PageStart = () => {
             <div className="bg-white py-8 sm:pt-16 sm:pb-0">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl lg:mx-0">
-                        <h1 className="text-pretty text-6xl font-semibold tracking-tight text-gray-900 sm:text-7xl pb-4">Aware4U</h1>
+                        <h1 className="text-6xl font-semibold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#F61563] to-black sm:text-7xl pb-4">Aware4U</h1>
                         <p className="mt-2 text-lg/8 text-gray-600">Hi, welcome to our ACTL3192 Industry Challenge Group Project. We are Aware4U and together, your future is our focus.
                         </p>
                     </div>
@@ -307,9 +307,9 @@ const PageStart = () => {
                                 </div>
                                 <div className="flex flex-1 items-center justify-center px-2 max-lg:pb-10 max-lg:pt-10 sm:px-4 lg:pb-2">
                                     <img
-                                    className="w-full max-lg:max-w-xs"
-                                    src={personas}
-                                    alt=""
+                                        className="w-full max-lg:max-w-xs"
+                                        src={personas}
+                                        alt=""
                                     />
                                 </div>
                             </div>
@@ -360,7 +360,7 @@ const PageStart = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-gray-50">
+            <section className="bg-gray-50" id='demonstration'>
                 <div className="relative isolate overflow-hidden bg-gray-50 px-6 pt-16 sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
                 <svg
                     viewBox="0 0 1024 1024"
@@ -398,15 +398,15 @@ const PageStart = () => {
                 </div>
                 <div className="relative mt-16 h-80 lg:mt-8">
                     <img
-                    alt="App screenshot"
-                    src="https://tailwindui.com/plus/img/component-images/dark-project-app-screenshot.png"
-                    width={1824}
-                    height={1080}
-                    className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
+                        alt="App screenshot"
+                        src={investPage}
+                        width={1824}
+                        height={1080}
+                        className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
                     />
                 </div>
                 </div>
-            </div>
+            </section>
             <footer className="bg-white text-black py-10">
                 <div className="container mx-auto text-center">
                     <p className="text-sm">&copy; 2024 Aware4U. All rights reserved.</p>

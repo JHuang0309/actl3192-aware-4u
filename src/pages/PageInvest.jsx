@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import {
   Dialog,
   DialogPanel,
@@ -11,21 +12,19 @@ import {
   PopoverPanel,
 } from '@headlessui/react'
 import {
-  ArrowPathIcon,
   Bars3Icon,
   ChartPieIcon,
   CursorArrowRaysIcon,
   UserCircleIcon,
-  SquaresPlusIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import logo from '../assets/logo.svg';
 import Modal from '../components/Modal'
 
 const PageInvest = () => {
-
+    const navigate = useNavigate();
     const products = [
         { name: 'Personas', description: 'Building emotional connections', href: '#', icon: UserCircleIcon },
         { name: 'Visualisations', description: 'Drawdown simulations and calculators', href: '#', icon: ChartPieIcon },
@@ -58,7 +57,7 @@ const PageInvest = () => {
 
     const handleSelection = (portfolio) => {
         setInvestment(portfolio);
-        if (portfolio == 'conservative') {
+        if (portfolio === 'conservative') {
             setCbStyle(selectedButton);
             setBStyle(unSelectedButton);
             setGStyle(unSelectedButton);
@@ -71,7 +70,7 @@ const PageInvest = () => {
             setBBtnText('Select');
             setGBtnText('Select');
             setCBtnText('Select');
-        } else if (portfolio == 'balanced') {
+        } else if (portfolio === 'balanced') {
             setCbStyle(unSelectedButton);
             setBStyle(selectedButton);
             setGStyle(unSelectedButton);
@@ -84,7 +83,7 @@ const PageInvest = () => {
             setBBtnText('Selected');
             setGBtnText('Select');
             setCBtnText('Select');
-        } else if (portfolio == 'growth') {
+        } else if (portfolio === 'growth') {
             setCbStyle(unSelectedButton);
             setBStyle(unSelectedButton);
             setGStyle(selectedButton);
@@ -113,8 +112,16 @@ const PageInvest = () => {
         }
     }
 
+    const [showModal, setShowModal] = useState(false);
+    const handleCloseModal = () => {
+        setShowModal(false);
+    }
+
     return (
         <>
+            {showModal &&
+                <Modal onClose={handleCloseModal} selection={investment}/>
+            }
             <header className="bg-white">
                 <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
                     <div className="flex lg:flex-1">
@@ -318,15 +325,17 @@ const PageInvest = () => {
                         <div className={`relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)] ${cbBorder} transition-all duration-200 ease-in-out`}>
                             <div className="px-6 py-6 sm:px-6 sm:py-6">
                                 <div className='sm:min-h-[335px]'>
-                                    <p className="mt-2 mb-4 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
-                                        The Conservative Balanced Portfolio
-                                    </p>
-                                    <p className="mt-2 text-3xl font-medium tracking-tight text-gray-950 max-lg:text-center mb-1">
-                                        4.94%
-                                    </p>
-                                    <p className="text-sm text-gray-500 max-lg:text-center">
-                                        5 year return per annum
-                                    </p>
+                                    <div className='sm:min-h-[132px]'>
+                                        <p className="mt-2 mb-4 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                                            The Conservative Balanced Portfolio
+                                        </p>
+                                        <p className="mt-2 text-3xl font-medium tracking-tight text-gray-950 max-lg:text-center mb-1">
+                                            4.94%
+                                        </p>
+                                        <p className="text-sm text-gray-500 max-lg:text-center">
+                                            5 year return per annum
+                                        </p>
+                                    </div>
                                     <div className='my-6 flex justify-center'>
                                         <button 
                                             className={cbStyle}
@@ -384,15 +393,17 @@ const PageInvest = () => {
                         <div className={`relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)] ${bBorder} transition-all duration-200 ease-in-out`}>
                             <div className="px-6 py-6 sm:px-6 sm:py-6">
                                 <div className='sm:min-h-[335px]'>
-                                    <p className="mt-2 mb-4 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
-                                        The Balanced Portfolio
-                                    </p>
-                                    <p className="mt-2 text-3xl font-medium tracking-tight text-gray-950 max-lg:text-center mb-1">
-                                        6.85%
-                                    </p>
-                                    <p className="text-sm text-gray-500 max-lg:text-center">
-                                        5 year return per annum
-                                    </p>
+                                    <div className='sm:min-h-[132px]'>
+                                        <p className="mt-2 mb-4 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                                            The Balanced Portfolio
+                                        </p>
+                                        <p className="mt-2 text-3xl font-medium tracking-tight text-gray-950 max-lg:text-center mb-1">
+                                            6.85%
+                                        </p>
+                                        <p className="text-sm text-gray-500 max-lg:text-center">
+                                            5 year return per annum
+                                        </p>
+                                    </div>
                                     <div className='my-6 flex justify-center'>
                                         <button
                                         className={bStyle}
@@ -450,15 +461,17 @@ const PageInvest = () => {
                         <div className={`relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)] ${gBorder} transition-all duration-200 ease-in-out`}>
                             <div className="px-6 py-6 sm:px-6 sm:py-6">
                                 <div className='sm:min-h-[335px]'>
-                                    <p className="mt-2 mb-4 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
-                                        The Growth Portfolio
-                                    </p>
-                                    <p className="mt-2 text-3xl font-medium tracking-tight text-gray-950 max-lg:text-center mb-1">
-                                        8.08%
-                                    </p>
-                                    <p className="text-sm text-gray-500 max-lg:text-center">
-                                        5 year return per annum
-                                    </p>
+                                    <div className='sm:min-h-[132px]'>
+                                        <p className="mt-2 mb-4 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                                            The Growth Portfolio
+                                        </p>
+                                        <p className="mt-2 text-3xl font-medium tracking-tight text-gray-950 max-lg:text-center mb-1">
+                                            8.08%
+                                        </p>
+                                        <p className="text-sm text-gray-500 max-lg:text-center">
+                                            5 year return per annum
+                                        </p>
+                                    </div>
                                     <div className='my-6 flex justify-center'>
                                         <button
                                         className={gStyle}
@@ -535,8 +548,14 @@ const PageInvest = () => {
                     <p>Find out more about Aware4U's <a href='' className="underline text-[#F61563]">Investment options</a></p>
                 </div>
                 <div className='border-t border-gray-200 mt-8 pt-8'>
-                    <button className='rounded-md px-3.5 py-2.5 text-sm font-semibold bg-white text-[#F61563] border border-[#F61563]/40 hover:bg-[#F61563]/10 focus:ring-2 focus:ring-[#F61563] mr-4'>Back</button>
-                    <button className='rounded-md px-3.5 py-2.5 text-sm font-semibold bg-[#F61563] text-white hover:bg-[#F61563]/90'>Continue</button>
+                    <button 
+                        className='rounded-md px-3.5 py-2.5 text-sm font-semibold bg-white text-[#F61563] border border-[#F61563]/40 hover:bg-[#F61563]/10 focus:ring-1 focus:ring-[#F61563] mr-4'
+                        onClick={() => {navigate('/')}}
+                    >Back</button>
+                    <button 
+                        className='rounded-md px-3.5 py-2.5 text-sm font-semibold bg-[#F61563] text-white hover:bg-[#F61563]/90'
+                        onClick={() => setShowModal(true)}
+                    >Continue</button>
                 </div>
             </section>
             <footer className="bg-white text-black py-10">
