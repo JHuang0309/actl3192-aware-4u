@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogPanel,
@@ -22,7 +22,7 @@ import {
 import { Link } from 'react-router-dom'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import logo from '../assets/logo.svg';
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import Modal from '../components/Modal'
 
 const PageInvest = () => {
 
@@ -33,6 +33,85 @@ const PageInvest = () => {
     ];
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    const unSelectedButton = 'rounded-md w-full px-3.5 py-2.5 text-sm font-semibold bg-white text-[#F61563] border border-[#F61563]/40 hover:bg-[#F61563]/10 focus:ring-2 focus:ring-[#F61563]';
+    const selectedButton = 'rounded-md w-full px-3.5 py-2.5 text-sm font-semibold bg-[#F61563] text-white';
+
+    const [cbStyle, setCbStyle] = useState(selectedButton);
+    const [bStyle, setBStyle] = useState(unSelectedButton);
+    const [gStyle, setGStyle] = useState(unSelectedButton);
+    const [cStyle, setCStyle] = useState(unSelectedButton);
+
+    const selectedBorder = 'border border-[#F61563]';
+
+    const [cbBorder, setCbBorder] = useState(selectedBorder);
+    const [bBorder, setBBorder] = useState('');
+    const [gBorder, setGBorder] = useState('');
+    const [cBorder, setCBorder] = useState('');
+
+    const [investment, setInvestment] = useState('conservative');
+
+    const [cbBtnText, setCbBtnText] = useState('Selected');
+    const [bBtnText, setBBtnText] = useState('Select');
+    const [gBtnText, setGBtnText] = useState('Select');
+    const [cBtnText, setCBtnText] = useState('Select');
+
+    const handleSelection = (portfolio) => {
+        setInvestment(portfolio);
+        if (portfolio == 'conservative') {
+            setCbStyle(selectedButton);
+            setBStyle(unSelectedButton);
+            setGStyle(unSelectedButton);
+            setCStyle(unSelectedButton);
+            setCbBorder(selectedBorder);
+            setBBorder('');
+            setGBorder('');
+            setCBorder('');
+            setCbBtnText('Selected');
+            setBBtnText('Select');
+            setGBtnText('Select');
+            setCBtnText('Select');
+        } else if (portfolio == 'balanced') {
+            setCbStyle(unSelectedButton);
+            setBStyle(selectedButton);
+            setGStyle(unSelectedButton);
+            setCStyle(unSelectedButton);
+            setCbBorder('');
+            setBBorder(selectedBorder);
+            setGBorder('');
+            setCBorder('');
+            setCbBtnText('Select');
+            setBBtnText('Selected');
+            setGBtnText('Select');
+            setCBtnText('Select');
+        } else if (portfolio == 'growth') {
+            setCbStyle(unSelectedButton);
+            setBStyle(unSelectedButton);
+            setGStyle(selectedButton);
+            setCStyle(unSelectedButton);
+            setCbBorder('');
+            setBBorder('');
+            setGBorder(selectedBorder);
+            setCBorder('');
+            setCbBtnText('Select');
+            setBBtnText('Select');
+            setGBtnText('Selected');
+            setCBtnText('Select');
+        } else {
+            setCbStyle(unSelectedButton);
+            setBStyle(unSelectedButton);
+            setGStyle(unSelectedButton);
+            setCStyle(selectedButton);
+            setCbBorder('');
+            setBBorder('');
+            setGBorder('');
+            setCBorder(selectedBorder);
+            setCbBtnText('Select');
+            setBBtnText('Select');
+            setGBtnText('Select');
+            setCBtnText('Selected');
+        }
+    }
 
     return (
         <>
@@ -231,53 +310,245 @@ const PageInvest = () => {
             <section className="flex px-8 lg:px-10 mx-6 lg:mx-10 flex-col">
                 <div className='text-lg/8 text-gray-600'>
                     <p className='mb-4'>Choose how you'd like to invest the funds in your new Retirement Account</p>
-                    <p>Select your preferred investment strategy from the three options below:</p>
+                    <p>Select your preferred investment strategy from the four options below:</p>
                 </div>
-                <div className="mt-12 grid gap-4 sm:mt-12 lg:grid-cols-3 lg:grid-rows-2">
+                <div className="mt-12 grid gap-4 sm:mt-12 lg:grid-cols-4 lg:grid-rows-2">
                     <div className="relative lg:row-span-2">
                         <div className="absolute inset-px rounded-lg bg-white lg:rounded-[2rem]"></div>
-                        <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)]">
-                            <div className="px-8 pb-8 pt-8 sm:px-10 sm:pb-10 sm:pt-10">
-                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
-                                Education tools
+                        <div className={`relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)] ${cbBorder} transition-all duration-200 ease-in-out`}>
+                            <div className="px-6 py-6 sm:px-6 sm:py-6">
+                                <div className='sm:min-h-[335px]'>
+                                    <p className="mt-2 mb-4 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                                        The Conservative Balanced Portfolio
+                                    </p>
+                                    <p className="mt-2 text-3xl font-medium tracking-tight text-gray-950 max-lg:text-center mb-1">
+                                        4.94%
+                                    </p>
+                                    <p className="text-sm text-gray-500 max-lg:text-center">
+                                        5 year return per annum
+                                    </p>
+                                    <div className='my-6 flex justify-center'>
+                                        <button 
+                                            className={cbStyle}
+                                            onClick={() => handleSelection('conservative')}
+                                        >{cbBtnText}</button>
+                                    </div>
+                                    <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                                        This portfolio invests in a wide range of assets with a balanced mix of growth and defensive assets. Designed to have medium-term growth with a balance between capital stability and capital growth. May also have some short-term fluctuations.
+                                    </p>
+                                </div>
+                                <p className="mt-4 text-lg tracking-tight text-gray-900 max-lg:text-center">
+                                    Asset Allocation
                                 </p>
-                                <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                                A tailored information architecture that saves looked-up words for future reference. 
+                                <div className="mt-6 border-t border-gray-100">
+                                    <dl className="divide-y divide-gray-100">
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Shares</dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">42%</div>
+                                        </div>
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Infrastructure & Property</dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">14.25%</div>
+                                        </div>
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Cash and Fixed Income</dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">43.75%</div>
+                                        </div>
+                                    </dl>
+                                </div>
+                                <p className="mt-8 text-lg tracking-tight text-gray-900 max-lg:text-center">
+                                    Risk Level
                                 </p>
+                                <div className="mt-6 border-t border-gray-100">
+                                    <dl className="divide-y divide-gray-100">
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Short term <span className='font-light text-gray-500'>(&lt;5 years)</span></dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">Medium - High Risk</div>
+                                        </div>
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Medium term <span className='font-light text-gray-500'>(5-20 years)</span></dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">Medium Risk</div>
+                                        </div>
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Long term <span className='font-light text-gray-500'>(20+ years)</span></dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">Low Risk</div>
+                                        </div>
+                                    </dl>
+                                </div>
                             </div>
                         </div>
                         <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-[2rem]"></div>
                     </div>
                     <div className="relative lg:row-span-2">
                         <div className="absolute inset-px rounded-lg bg-white lg:rounded-[2rem]"></div>
-                        <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)]">
-                            <div className="px-8 pb-8 pt-8 sm:px-10 sm:pb-10 sm:pt-10">
-                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
-                                Education tools
+                        <div className={`relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)] ${bBorder} transition-all duration-200 ease-in-out`}>
+                            <div className="px-6 py-6 sm:px-6 sm:py-6">
+                                <div className='sm:min-h-[335px]'>
+                                    <p className="mt-2 mb-4 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                                        The Balanced Portfolio
+                                    </p>
+                                    <p className="mt-2 text-3xl font-medium tracking-tight text-gray-950 max-lg:text-center mb-1">
+                                        6.85%
+                                    </p>
+                                    <p className="text-sm text-gray-500 max-lg:text-center">
+                                        5 year return per annum
+                                    </p>
+                                    <div className='my-6 flex justify-center'>
+                                        <button
+                                        className={bStyle}
+                                        onClick={() => handleSelection('balanced')}
+                                        >{bBtnText}</button>
+                                    </div>
+                                    <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                                        This portfolio invests in a wide range of assets with a focus on growth assets. Designed to have medium- to long-term growth with possible short-term fluctuations.
+                                    </p>
+                                </div>
+                                <p className="mt-4 text-lg tracking-tight text-gray-900 max-lg:text-center">
+                                    Asset Allocation
                                 </p>
-                                <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                                A tailored information architecture that saves looked-up words for future reference. 
+                                <div className="mt-6 border-t border-gray-100">
+                                    <dl className="divide-y divide-gray-100">
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Shares</dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">59.25%</div>
+                                        </div>
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Infrastructure & Property</dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">17.28%</div>
+                                        </div>
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Cash and Fixed Income</dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">23.5%</div>
+                                        </div>
+                                    </dl>
+                                </div>
+                                <p className="mt-8 text-lg tracking-tight text-gray-900 max-lg:text-center">
+                                    Risk Level
                                 </p>
+                                <div className="mt-6 border-t border-gray-100">
+                                    <dl className="divide-y divide-gray-100">
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Short term <span className='font-light text-gray-500'>(&lt;5 years)</span></dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">High Risk</div>
+                                        </div>
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Medium term <span className='font-light text-gray-500'>(5-20 years)</span></dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">Medium Risk</div>
+                                        </div>
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Long term <span className='font-light text-gray-500'>(20+ years)</span></dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">Low Risk</div>
+                                        </div>
+                                    </dl>
+                                </div>
                             </div>
                         </div>
                         <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-[2rem]"></div>
                     </div>
                     <div className="relative lg:row-span-2">
                         <div className="absolute inset-px rounded-lg bg-white lg:rounded-[2rem]"></div>
-                        <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)]">
-                            <div className="px-8 pb-8 pt-8 sm:px-10 sm:pb-10 sm:pt-10">
-                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
-                                Education tools
+                        <div className={`relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)] ${gBorder} transition-all duration-200 ease-in-out`}>
+                            <div className="px-6 py-6 sm:px-6 sm:py-6">
+                                <div className='sm:min-h-[335px]'>
+                                    <p className="mt-2 mb-4 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                                        The Growth Portfolio
+                                    </p>
+                                    <p className="mt-2 text-3xl font-medium tracking-tight text-gray-950 max-lg:text-center mb-1">
+                                        8.08%
+                                    </p>
+                                    <p className="text-sm text-gray-500 max-lg:text-center">
+                                        5 year return per annum
+                                    </p>
+                                    <div className='my-6 flex justify-center'>
+                                        <button
+                                        className={gStyle}
+                                        onClick={() => handleSelection('growth')}>{gBtnText}</button>
+                                    </div>
+                                    <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                                        This portfolio invests in a wide range of assets with a high focus on growth assets. Designed to have strong long-term growth with possible short-term fluctuations.
+                                    </p>
+                                </div>
+                                <p className="mt-4 text-lg tracking-tight text-gray-900 max-lg:text-center">
+                                    Asset Allocation
                                 </p>
+                                <div className="mt-6 border-t border-gray-100">
+                                    <dl className="divide-y divide-gray-100">
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Shares</dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">75.5%</div>
+                                        </div>
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Infrastructure & Property</dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">15%</div>
+                                        </div>
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Cash and Fixed Income</dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">9.5%</div>
+                                        </div>
+                                    </dl>
+                                </div>
+                                <p className="mt-8 text-lg tracking-tight text-gray-900 max-lg:text-center">
+                                    Risk Level
+                                </p>
+                                <div className="mt-6 border-t border-gray-100">
+                                    <dl className="divide-y divide-gray-100">
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Short term <span className='font-light text-gray-500'>(&lt;5 years)</span></dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">High Risk</div>
+                                        </div>
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Medium term <span className='font-light text-gray-500'>(5-20 years)</span></dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">Medium Risk</div>
+                                        </div>
+                                        <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                            <dt className="text-sm font-medium text-gray-900 sm:col-span-2">Long term <span className='font-light text-gray-500'>(20+ years)</span></dt>
+                                            <div className="mt-1 text-sm text-gray-700 sm:col-span-1 sm:mt-0 sm:text-right pr-1">Low Risk</div>
+                                        </div>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-[2rem]"></div>
+                    </div>
+                    <div className="relative lg:row-span-2">
+                        <div className="absolute inset-px rounded-lg bg-white lg:rounded-[2rem]"></div>
+                        <div className={`relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-[calc(2rem+1px)] ${cBorder} transition-all duration-200 ease-in-out`}>
+                            <div className="px-6 py-6 sm:px-6 sm:py-6">
+                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                                    Choose your own Investments
+                                </p>
+                                <div className='my-6 flex justify-center'>
+                                    <button
+                                    className={cStyle}
+                                    onClick={() => handleSelection('choose')}>{cBtnText}</button>
+                                </div>
                                 <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                                A tailored information architecture that saves looked-up words for future reference. 
+                                    Not quite sure? You can book an appointment at no extra cost to speak with a qualified financial adviser about your investment options. Visit www.aware4u.com.au/retirecheckin
                                 </p>
                             </div>
                         </div>
                         <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-[2rem]"></div>
                     </div>  
                 </div>
+                <div className='text-lg/8 text-gray-600 mt-12'>
+                    <p className='mb-4'>If you have any investment transactions in progress, such as a rollover or a change of investment choice, your new Retirement Account will be established after these transactions are complete. You can track any in-progress transactions in Member Online under <a href='' className="underline text-[#F61563]">My activities</a>.</p>
+                    <p>Find out more about Aware4U's <a href='' className="underline text-[#F61563]">Investment options</a></p>
+                </div>
+                <div className='border-t border-gray-200 mt-8 pt-8'>
+                    <button className='rounded-md px-3.5 py-2.5 text-sm font-semibold bg-white text-[#F61563] border border-[#F61563]/40 hover:bg-[#F61563]/10 focus:ring-2 focus:ring-[#F61563] mr-4'>Back</button>
+                    <button className='rounded-md px-3.5 py-2.5 text-sm font-semibold bg-[#F61563] text-white hover:bg-[#F61563]/90'>Continue</button>
+                </div>
             </section>
+            <footer className="bg-white text-black py-10">
+                <div className="container mx-auto text-center">
+                    <p className="text-sm">&copy; 2024 Aware4U. All rights reserved.</p>
+                    <div className="mt-4">
+                        <a href="#about" className="text-gray-400 hover:text-[#F61563] mx-2">About</a>
+                        <a href="#services" className="text-gray-400 hover:text-[#F61563] mx-2">Services</a>
+                        <a href="#contact" className="text-gray-400 hover:text-[#F61563] mx-2">Contact</a>
+                    </div>
+                </div>
+            </footer>
         </>
     );
 };
