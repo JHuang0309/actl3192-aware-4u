@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import {
-  Dialog,
+import { 
+    DialogBackdrop,
+    Dialog,
+    DialogTitle,
+    TransitionChild,
   DialogPanel,
   Disclosure,
   DisclosureButton,
@@ -25,6 +28,8 @@ import personas from '../assets/personasTool.png';
 import simulators from '../assets/simulators.png';
 import PaymentModal from '../components/PaymentModal';
 import { Transition } from "@headlessui/react";
+import Tooltip from '../components/Tooltip';
+import Dictionary from '../components/Dictionary';
 
 const PageDrawdown = () => {
     useEffect(() => {
@@ -37,27 +42,105 @@ const PageDrawdown = () => {
         { name: 'Visualisations', description: 'Drawdown simulations and calculators', href: '/not-found', icon: ChartPieIcon },
         { name: 'Educational Tools', description: 'Enhancing information architecture', href: '/not-found', icon: CursorArrowRaysIcon },
     ];
+
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    const dictionary = [
+        {
+            word: 'indexation',
+            type: 'noun',
+            definition: 'Indexation refers to the process of adjusting payments or benefits in line with inflation to maintain purchasing power over time.',
+            example: `Imagine you receive $1,000 per month in superannuation payments. With inflation, prices rise over time, meaning that $1,000 won’t buy as much next year as it does today. Indexation adjusts your payment to keep up with these price increases. For example, if inflation is 3% over the year, your monthly payment would increase by 3% to $1,030, helping you maintain the same purchasing power.`
+        },
+        {
+            word: 'fixed dollar amount',
+            type: 'noun',
+            definition: 'A fixed dollar amount refers to a predetermined and unchanging sum of money allocated or withdrawn, regardless of market conditions or account balances.',
+            example: `If you decide to withdraw $2,000 every month from your retirement account, this amount remains the same regardless of how much money is in the account or how the market performs.`
+        },
+        {
+            word: 'account balance',
+            type: 'noun',
+            definition: 'The total value of funds available in a financial account, including deposits, withdrawals, and earnings, at a specific point in time.',
+            example: `After contributing $500 to your superannuation account this month and earning $50 in interest, your account balance is $10,550.`
+        },
+        {
+            word: 'investment',
+            type: 'noun',
+            definition: 'The allocation of money into financial instruments, assets, or ventures with the expectation of generating income or capital appreciation.',
+            example: `Investing $10,000 into a diversified portfolio of stocks and bonds could grow over time, providing additional funds for your retirement.`
+        },
+        {
+            word: 'drawdown',
+            type: 'noun',
+            definition: 'Drawdown refers to the process of withdrawing funds from a retirement account or investment portfolio to cover expenses during retirement.',
+            example: `After retiring, you might initiate a drawdown of $2,000 monthly from your retirement savings to cover living expenses.`
+        },
+        {
+            word: 'regulatory',
+            type: 'adjective',
+            definition: 'Pertaining to laws, rules, and guidelines established by governing bodies to oversee and manage financial systems or practices.',
+            example: `Superannuation funds must comply with regulatory requirements, such as setting a minimum drawdown amount for retirees each year.`
+        },
+        {
+            word: 'retirement account',
+            type: 'noun',
+            definition: 'A financial account specifically designed to hold savings and investments intended for use during retirement, often with tax advantages.',
+            example: `A superannuation fund in Australia is an example of a retirement account that allows individuals to save for retirement while benefiting from tax incentives and employer contributions.`
+        },
+        {
+            word: 'payment arrangements',
+            type: 'noun',
+            definition: 'Payment arrangements refer to the agreed-upon plan between a service provider and an individual for making payments over time, typically involving specific amounts and schedules.',
+            example: `For instance, if you owe $5,000 to a utility company, you might set up a payment arrangement to pay $500 per month over 10 months instead of paying the full amount upfront. This ensures your obligation is met without financial strain.`
+        },
+        {
+            word: 'payment options',
+            type: 'noun',
+            definition: 'Payment options refer to the various methods or plans available for making payments, including lump sums, installments, or tailored payment schedules.',
+            example: `In retirement planning, you might have payment options for receiving your superannuation benefits, such as choosing between monthly payments, a lump sum, or a combination of both, based on what suits your financial goals.`
+        },
+        {
+            word: 'purchasing power',
+            type: 'noun',
+            definition: 'Purchasing power refers to the ability of money to buy goods and services. It decreases when prices rise (inflation) and increases when prices fall (deflation).',
+            example: `For instance, if $100 could buy a basket of groceries last year but now the same basket costs $120, your purchasing power has decreased. In retirement, maintaining purchasing power is crucial to ensure your savings last as prices rise over time.`
+        },
+        {
+            word: 'inflation',
+            type: 'noun',
+            definition: 'Inflation is the rate at which the general level of prices for goods and services rises over a period of time, reducing the purchasing power of money.',
+            example: `If inflation is 3% per year, an item costing $100 this year will cost $103 next year. Over time, inflation can significantly impact the real value of retirement savings and income.`
+        },
+        {
+            word: 'inflation-adjusted',
+            type: 'adjective',
+            definition: 'Inflation-adjusted refers to values or payments that are modified to reflect changes in the purchasing power of money due to inflation, ensuring they retain their real value over time.',
+            example: `If a retirement pension starts at $20,000 per year and inflation is 2%, an inflation-adjusted payment for the next year would increase to $20,400 to maintain the same purchasing power.`
+        },
+        {
+            word: 'draw-down order',
+            type: 'noun',
+            definition: 'Draw-down order refers to the sequence in which a retiree withdraws funds from different sources of savings or investments to maximize income, minimize taxes, and preserve wealth.',
+            example: `A common draw-down order is to withdraw from taxable accounts first, followed by tax-deferred accounts like superannuation, and finally tax-free accounts like a Roth IRA. This strategy helps manage tax liabilities and extends the lifespan of retirement savings.`
+        }
+    ];
+
     const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
     const [showTooltip, setShowTooltip] = useState(false);
+    const [highlight, setHighlight] = useState('');
     const [tooltipContent, setTooltipContent] = useState('');
 
-    const handleTextSelection = (event) => {
+    const handleTextSelection = () => {
         const selectedText = window.getSelection().toString().trim().toLowerCase();
-        console.log(selectedText);
+        setHighlight(selectedText);
+        const dictionaryIndex = dictionary.findIndex(item => item.word.toLowerCase() === selectedText);
 
-        if (selectedText === 'indexation') { // Match the specific word you want
-            const selection = window.getSelection();
-            const range = selection.getRangeAt(0);
-            const rect = range.getBoundingClientRect();
-
-            // Position the tooltip near the selected word
+        if (dictionaryIndex != -1) {
             setTooltipPosition({
-                top: rect.top, // Adjust the offset as needed
-                left: rect.left + rect.width / 2 - 50, // Adjust to center tooltip
+                top: 100, 
             });
-
-            setTooltipContent('This is the tooltip content!');
+            setTooltipContent(dictionary[dictionaryIndex]);
             setShowTooltip(true);
         } else {
             setShowTooltip(false);
@@ -65,8 +148,8 @@ const PageDrawdown = () => {
     };
 
     const handleClickOutside = (event) => {
-        if (event.target.id !== 'text' && event.target.id !== 'tooltip') {
-        setShowTooltip(false);
+        if (event.target.id === 'tooltip') {
+            setShowTooltip(false);
         }
     };
 
@@ -75,8 +158,8 @@ const PageDrawdown = () => {
         document.addEventListener('click', handleClickOutside);
 
         return () => {
-        document.removeEventListener('mouseup', handleTextSelection);
-        document.removeEventListener('click', handleClickOutside);
+            document.removeEventListener('mouseup', handleTextSelection);
+            document.removeEventListener('click', handleClickOutside);
         };
     }, []);
 
@@ -91,25 +174,25 @@ const PageDrawdown = () => {
         if (paymentOption === 'Minimum Amount') {
             return (
                 <div className="space-y-2">
-                    <p className="text-sm text-gray-600">The minimum drawdown amount is calculated as a percentage of your account balance, based on your age. The minimum drawdown amount is calculated as a percentage of your account balance, based on your age. These percentages are set by government regulations to ensure a sustainable withdrawal rate, preserving your retirement savings for as long as possible.</p>
-                    <p className="text-sm text-gray-600">This option provides a basic income stream to cover essential expenses, making it suitable for those who want to prioritize the longevity of their superannuation balance.</p>
-                    <p className="text-sm text-gray-600">Retirees seeking to maintain their account balance over the long term or those with other sources of income.</p>
+                    <p className="text-sm text-gray-600">The minimum <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>drawdown</span> amount is calculated as a percentage of your <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>account balance</span>, based on your age. The minimum drawdown amount is calculated as a percentage of your <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>account balance</span>, based on your age. These percentages are set by government regulations to ensure a sustainable withdrawal rate, preserving your retirement savings for as long as possible.</p>
+                    <p className="text-sm text-gray-600">This option provides a basic income stream to cover essential expenses, making it suitable for those who want to prioritise the longevity of their superannuation balance.</p>
+                    <p className="text-sm text-gray-600">Retirees seeking to maintain their <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>account balance</span> over the long term or those with other sources of income.</p>
                 </div>
             );
         } else if (paymentOption === 'Specific Amount with Indexation') {
             return (
                 <div className="space-y-2">
-                    <p className="text-sm text-gray-600">A specific drawdown amount allows you to choose a fixed dollar amount to receive regularly. This amount may exceed the government-mandated minimum but must stay within the limits of your account balance.</p>
+                    <p className="text-sm text-gray-600">A specific <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>drawdown</span> amount allows you to choose a <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>fixed dollar amount</span> to receive regularly. This amount may exceed the government-mandated minimum but must stay within the limits of your <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>account balance</span>.</p>
                     <p className="text-sm text-gray-600">Provides predictable, tailored income to suit your lifestyle needs, giving you greater control over your finances.</p>
-                    <p className="text-sm text-gray-600">Retirees who want more flexibility and control to meet planned expenses, such as travel or home renovations, without being tied to regulatory minimums.</p>
+                    <p className="text-sm text-gray-600">Retirees who want more flexibility and control to meet planned expenses, such as travel or home renovations, without being tied to <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>regulatory</span> minimums.</p>
                 </div>
             );
         } else {
             return (
                 <div className="space-y-2">
-                    <p className="text-sm text-gray-600">This option builds on the specific amount by automatically adjusting your payments annually in line with inflation (e.g., Consumer Price Index). This ensures that your income retains its purchasing power over time.</p>
-                    <p className="text-sm text-gray-600">Provides a stable, inflation-adjusted income to maintain your standard of living throughout retirement.</p>
-                    <p className="text-sm text-gray-600">Retirees concerned about the long-term impact of inflation on their purchasing power and those seeking peace of mind about future financial stability.</p>
+                    <p className="text-sm text-gray-600">This option builds on the specific amount by automatically adjusting your payments annually in line with <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>inflation</span> (e.g., Consumer Price Index). This ensures that your income retains its <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>purchasing power</span> over time.</p>
+                    <p className="text-sm text-gray-600">Provides a stable, <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>inflation-adjusted</span> income to maintain your standard of living throughout retirement.</p>
+                    <p className="text-sm text-gray-600">Retirees concerned about the long-term impact of <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>inflation</span> on their <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>purchasing power</span> and those seeking peace of mind about future financial stability.</p>
                 </div>
             );
         }
@@ -161,7 +244,9 @@ const PageDrawdown = () => {
           imageSrc: simulators,
           href: '/not-found',
         },
-      ]
+      ];
+
+      const [open, setOpen] = useState(true)
 
     return (
         <>
@@ -169,16 +254,7 @@ const PageDrawdown = () => {
                 <PaymentModal onClose={handleCloseModal} selection={paymentOption} amount={amount} frequency={frequency} date={date}/>
             }
             {showTooltip && (
-                <div
-                id="tooltip"
-                className="absolute bg-gray-800 text-white text-sm rounded py-1 px-2 shadow-lg transition-opacity opacity-100"
-                style={{
-                    top: `${tooltipPosition.top}px`,
-                    left: `${tooltipPosition.left}px`,
-                }}
-                >
-                {tooltipContent}
-                </div>
+                <Tooltip word={highlight} tooltipPosition={tooltipPosition} dictEntry={tooltipContent}/>
             )}
             <header className="bg-white">
                 <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
@@ -313,10 +389,66 @@ const PageDrawdown = () => {
                     </DialogPanel>
                 </Dialog>
             </header>
+            <button
+                onClick={() => setOpen(true)}
+                className="fixed bottom-4 right-4 z-50 flex items-center justify-center w-12 h-12 bg-[#F61563] text-white rounded-full shadow-lg hover:bg-[#F61563]/70 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-[#F61563]"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h1.5m9 0h-9"
+                    />
+                </svg>
+            </button>
+            <Dialog open={open} onClose={setOpen} className="relative z-10">
+                <DialogBackdrop
+                    transition
+                    className="fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
+                />
+
+                <div className="fixed inset-0 overflow-hidden">
+                    <div className="absolute inset-0 overflow-hidden">
+                    <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                        <DialogPanel
+                        transition
+                        className="pointer-events-auto relative w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
+                        >
+                        <TransitionChild>
+                            <div className="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 duration-500 ease-in-out data-[closed]:opacity-0 sm:-ml-10 sm:pr-4">
+                            <button
+                                type="button"
+                                onClick={() => setOpen(false)}
+                                className="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                            >
+                                <span className="absolute -inset-2.5" />
+                                <span className="sr-only">Close panel</span>
+                                <XMarkIcon aria-hidden="true" className="size-6" />
+                            </button>
+                            </div>
+                        </TransitionChild>
+                        <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                            <div className="px-4 sm:px-6">
+                            <DialogTitle className="text-base font-semibold text-gray-900">Page Dictionary</DialogTitle>
+                            </div>
+                            <div className="relative flex-1 px-4 sm:px-6"><Dictionary /></div>
+                        </div>
+                        </DialogPanel>
+                    </div>
+                    </div>
+                </div>
+            </Dialog>
             <section className="lg:flex lg:items-center lg:justify-between px-10 lg:px-10 mx-6 lg:mx-10 mb-8">
                 <div className="min-w-0 flex-1">
                     <h2 className="text-2xl/7 font-semibold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-                        Set up a retirement account
+                        Set up a <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>retirement account</span>
                     </h2>
                     <div className="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6 text-gray-500 pt-2">
                         <nav className="flex text-gray-500 pt-2" aria-label="Breadcrumb">
@@ -374,9 +506,9 @@ const PageDrawdown = () => {
             </section>
             <section className="flex px-8 lg:px-10 mx-6 lg:mx-10 flex-col">
                 <div className='text-md/7 '>
-                    <p className='text-lg/6 mb-4 font-semibold text-gray-900'>Payment Options</p>
-                    <p className='mb-4 font-semibold text-gray-800'>Select your income payment arrangements</p>
-                    <p className='text-gray-600'>It's now time to decide how often and how much you'd like to recieve from your new Retirement Account.</p>
+                    <p className='text-lg/6 mb-4 font-semibold text-gray-900'><span className='hover:text-[#F61563] transition duration-300 ease-in-out'>Payment Options</span></p>
+                    <p className='mb-4 font-semibold text-gray-800'>Select your income <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>payment arrangements</span></p>
+                    <p className='text-gray-600'>It's now time to decide how often and how much you'd like to recieve from your new <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>Retirement Account</span>.</p>
                 </div>
                 <div className='mt-8'>
                     <fieldset>
@@ -416,7 +548,7 @@ const PageDrawdown = () => {
                                     onClick={() => setPaymentOption('Specific Amount with Indexation')}
                                 />
                                 <label htmlFor="with-indexation" className="block text-sm/6 font-medium text-gray-900">
-                                    Specific amount with indexation
+                                    Specific amount with <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>indexation</span>
                                 </label>
                             </div>
                         </div>
@@ -501,8 +633,8 @@ const PageDrawdown = () => {
                                 <div className="mt-10">
                                     <div className="mt-2 space-y-2">
                                         <p className="text-sm text-gray-600">Your regular income payments will be taken from your account according to the Aware4U Super default option.</p>
-                                        <p className="text-sm text-gray-600">You can change this draw-down order, once your account is set up, on the change investment options page.</p>
-                                        <p className="text-sm text-gray-600">For more information on Aware4U's default drawdown approach please refer to the <a className='underline text-[#F61563]'>Aware4U Retirement Income PDS</a>.</p>
+                                        <p className="text-sm text-gray-600">You can change this <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>draw-down order</span>, once your account is set up, on the change <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>investment</span> options page.</p>
+                                        <p className="text-sm text-gray-600">For more information on Aware4U's default <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>drawdown</span> approach please refer to the <a className='underline text-[#F61563]'>Aware4U Retirement Income PDS</a>.</p>
                                     </div>
                                 </div>
                             </div>
