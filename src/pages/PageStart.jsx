@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Dialog,
   DialogPanel,
@@ -28,11 +28,14 @@ import investPage from '../assets/investPage.png'
 
 
 const PageStart = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const products = [
-        { name: 'Personas', description: 'Building emotional connections', href: '#', icon: UserCircleIcon },
-        { name: 'Visualisations', description: 'Drawdown simulations and calculators', href: '#', icon: ChartPieIcon },
-        { name: 'Educational Tools', description: 'Enhancing information architecture', href: '#', icon: CursorArrowRaysIcon },
+        { name: 'Personas', description: 'Building emotional connections', href: '/not-found', icon: UserCircleIcon },
+        { name: 'Visualisations', description: 'Drawdown simulations and calculators', href: '/not-found', icon: ChartPieIcon },
+        { name: 'Educational Tools', description: 'Enhancing information architecture', href: '/not-found', icon: CursorArrowRaysIcon },
     ]
 
     const team = [
@@ -114,10 +117,10 @@ const PageStart = () => {
                                         <item.icon aria-hidden="true" className="size-6 text-gray-600 group-hover:text-[#F61563]" />
                                         </div>
                                         <div className="flex-auto">
-                                        <a href={item.href} className="block font-semibold text-gray-900">
+                                        <Link to={item.href} className="block font-semibold text-gray-900">
                                             {item.name}
                                             <span className="absolute inset-0" />
-                                        </a>
+                                        </Link>
                                         <p className="mt-1 text-gray-600">{item.description}</p>
                                         </div>
                                     </div>
@@ -128,9 +131,9 @@ const PageStart = () => {
                         <a href="#The-Challenge" className="text-sm/6 font-semibold text-gray-900">
                             The Challenge
                         </a>
-                        <a href="#" className="text-sm/6 font-semibold text-gray-900">
+                        <Link to="/not-found" className="text-sm/6 font-semibold text-gray-900">
                             Publications
-                        </a>
+                        </Link>
                     </PopoverGroup>
                     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                         <a href='#demonstration' className="text-sm/6 font-semibold text-gray-900">
@@ -390,7 +393,7 @@ const PageStart = () => {
                         Start demonstration
                     </Link>
                     <Link 
-                        to="/publications"
+                        to="/not-found"
                         className="text-sm/6 font-semibold text-[#F61563]">
                         View publications <span aria-hidden="true">→</span>
                     </Link>

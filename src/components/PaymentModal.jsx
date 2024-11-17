@@ -2,23 +2,42 @@ import { useEffect, useState } from 'react';
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom';
 
-const Modal = ({ selection, onClose }) => {
+const formatAmount = (amount) => {
+    // Convert to a number if it's a string and parse it to a float
+    const parsedAmount = parseFloat(amount);
+
+    if (isNaN(parsedAmount)) {
+        return '$0.00'; // Return a default value if the amount is not valid
+    }
+
+    // Format the amount with commas and fixed to two decimal places
+    return `$${parsedAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+};
+
+const PaymentModal = ({ selection, onClose, amount, frequency, date }) => {
     const navigate = useNavigate();
 
-    const [portfolioSelection, setPortfolioSelection] = useState('');
-
-    useEffect(() => {
-        // You've selected...
-        if (selection === 'conservative') {
-            setPortfolioSelection(' The Conservative Balanced Portfolio option');
-        } else if (selection === 'balanced') {
-            setPortfolioSelection(' The Balanced Portfolio option');
-        } else if (selection === 'growth') {
-            setPortfolioSelection(' The Growth Portfolio option');
-        } else {
-            setPortfolioSelection('to chooose your own investments');
+    const ModalText = () => {
+        if (selection === 'Minimum Amount') {
+            return (
+                <p className="text-base text-gray-700 mb-2">
+                    You've selected to be paid the <span className='font-semibold'>Minimum Amount</span>, with payments starting on {date}.
+                </p>
+            );
+        } else if (selection === 'Specific Amount') {
+            return (
+                <p className="text-base text-gray-700 mb-2">
+                    You've selected to be paid a <span className='font-semibold'>Specific Amount of {formatAmount(amount)}</span> paid <span className='font-semibold'>{frequency}</span> with payments starting on {date}.
+                </p>
+            );
+        } else if (selection === 'Specific Amount with Indexation') {
+            return (
+                <p className="text-base text-gray-700 mb-2">
+                    You've selected to be paid a <span className='font-semibold'>Specific Amount of {formatAmount(amount)}</span> with indexation paid <span className='font-semibold'>{frequency}</span> with payments starting on {date}.
+                </p>
+            );
         }
-    }, [selection])
+    };
 
     const handleCancel = () => {
         onClose();
@@ -26,7 +45,7 @@ const Modal = ({ selection, onClose }) => {
 
     const handleContinue = () => {
         onClose();
-        navigate('/drawdown-payment');
+        navigate('/');
     }
 
     return (
@@ -46,36 +65,34 @@ const Modal = ({ selection, onClose }) => {
                             <div className="sm:flex sm:items-start">
                                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                                     <DialogTitle as="h3" className="text-base font-semibold text-gray-900 mb-6 text-lg">
-                                        Confirm Investment Option
+                                        Confirm Payment Arrangement
                                     </DialogTitle>
                                     <div className="mt-2 mb-4">
-                                        <p className="text-base text-gray-700 mb-2">
-                                            You've selected <span className='font-semibold'>{portfolioSelection}</span>.
-                                        </p>
+                                        <ModalText />
                                         <p className="text-base text-gray-700 mb-2">
                                             Before confirming, please ensure you’ve considered the following:
                                         </p>
                                         <div className="text-sm text-gray-600 mb-2">
                                             <ol className='pl-5 list-decimal'>
-                                                <li>How long you’re investing for.</li>
-                                                <li>How hands-on you want to be when managing your super.</li>
-                                                <li>How much investment risk you're comfortable with.</li>
+                                                <li>How long you plan to draw from your retirement funds.</li>
+                                                <li>How comfortable you are with the amount of flexibility in your retirement payments.</li>
+                                                <li>What income level do you require to live your desired retirement lifestyle.</li>
                                             </ol>
                                         </div>
-                                        <a href='https://www.australiansuper.com/investments/choosing-the-right-option' target="_blank" className="text-sm underline text-[#F61563]">
+                                        <a href='https://aware.com.au/employer/payment/payment-options' target="_blank" className="text-sm underline text-[#F61563]">
                                             Learn more
                                         </a>
                                         <p className="text-sm text-gray-500 my-2">
-                                            We understand your circumstances may change over time, so you can change investment options wherever it suits you.
+                                            We understand your circumstances may change over time, so you can change payment options wherever it suits you.
                                         </p>
                                         <p className="text-base text-gray-700 mt-2">
-                                            Are you sure you want to proceed with this as your investment choice?
+                                            Are you sure you want to proceed with this as your payment arrangement?
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                            <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                             <button
                                 type="button"
                                 onClick={() => handleContinue()}
@@ -100,4 +117,4 @@ const Modal = ({ selection, onClose }) => {
     );
 };
 
-export default Modal;
+export default PaymentModal;

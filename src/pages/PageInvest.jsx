@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import {
   Dialog,
@@ -25,10 +25,13 @@ import Modal from '../components/Modal'
 
 const PageInvest = () => {
     const navigate = useNavigate();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const products = [
-        { name: 'Personas', description: 'Building emotional connections', href: '#', icon: UserCircleIcon },
-        { name: 'Visualisations', description: 'Drawdown simulations and calculators', href: '#', icon: ChartPieIcon },
-        { name: 'Educational Tools', description: 'Enhancing information architecture', href: '#', icon: CursorArrowRaysIcon },
+        { name: 'Personas', description: 'Building emotional connections', href: '/not-found', icon: UserCircleIcon },
+        { name: 'Visualisations', description: 'Drawdown simulations and calculators', href: '/not-found', icon: ChartPieIcon },
+        { name: 'Educational Tools', description: 'Enhancing information architecture', href: '/not-found', icon: CursorArrowRaysIcon },
     ];
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -163,10 +166,10 @@ const PageInvest = () => {
                                         <item.icon aria-hidden="true" className="size-6 text-gray-600 group-hover:text-[#F61563]" />
                                         </div>
                                         <div className="flex-auto">
-                                        <a href={item.href} className="block font-semibold text-gray-900">
+                                        <Link to={item.href} className="block font-semibold text-gray-900">
                                             {item.name}
                                             <span className="absolute inset-0" />
-                                        </a>
+                                        </Link>
                                         <p className="mt-1 text-gray-600">{item.description}</p>
                                         </div>
                                     </div>
@@ -177,9 +180,9 @@ const PageInvest = () => {
                         <Link to="/" className="text-sm/6 font-semibold text-gray-900">
                             The Challenge
                         </Link>
-                        <a href="#" className="text-sm/6 font-semibold text-gray-900">
+                        <Link to="/not-found" className="text-sm/6 font-semibold text-gray-900">
                             Publications
-                        </a>
+                        </Link>
                     </PopoverGroup>
                     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                         <Link to="/" className="text-sm/6 font-semibold text-gray-900">
@@ -316,6 +319,7 @@ const PageInvest = () => {
             </section>
             <section className="flex px-8 lg:px-10 mx-6 lg:mx-10 flex-col">
                 <div className='text-md/7 text-gray-600'>
+                    <p className='text-lg/6 mb-4 font-semibold text-gray-900'>Investment Options</p>
                     <p className='mb-4'>Choose how you'd like to invest the funds in your new Retirement Account</p>
                     <p>Select your preferred investment strategy from the four options below:</p>
                 </div>
