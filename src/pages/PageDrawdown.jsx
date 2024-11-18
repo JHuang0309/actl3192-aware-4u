@@ -179,7 +179,7 @@ const PageDrawdown = () => {
                     <p className="text-sm text-gray-600">Retirees seeking to maintain their <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>account balance</span> over the long term or those with other sources of income.</p>
                 </div>
             );
-        } else if (paymentOption === 'Specific Amount with Indexation') {
+        } else if (paymentOption === 'Specific Amount') {
             return (
                 <div className="space-y-2">
                     <p className="text-sm text-gray-600">A specific <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>drawdown</span> amount allows you to choose a <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>fixed dollar amount</span> to receive regularly. This amount may exceed the government-mandated minimum but must stay within the limits of your <span className='hover:text-[#F61563] transition duration-300 ease-in-out'>account balance</span>.</p>
