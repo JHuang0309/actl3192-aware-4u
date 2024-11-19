@@ -22,11 +22,17 @@ Follow the steps below to set up the project locally:
 
 Clone the repository:
 `git clone <git@github.com:JHuang0309/actl3192-aware-4u.git>`
+
 cd <aware-4u>
+
 Install dependencies: Ensure you have Node.js installed. Then run:
+
 `npm install`
+
 Run the development server:
+
 `npm start`
+
 The application will be accessible at http://localhost:3000.
 
 Build for production (if needed):
