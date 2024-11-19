@@ -23,7 +23,7 @@ Follow the steps below to set up the project locally:
 Clone the repository:
 `git clone <git@github.com:JHuang0309/actl3192-aware-4u.git>`
 
-cd <aware-4u>
+`cd <aware-4u>`
 
 Install dependencies: Ensure you have Node.js installed. Then run:
 
