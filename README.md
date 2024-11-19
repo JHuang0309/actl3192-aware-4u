@@ -31,7 +31,7 @@ The application will be accessible at http://localhost:3000.
 
 Build for production (if needed):
 
-`npm run buil
+`npm run build`
 
 ### Deployment
 
