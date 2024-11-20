@@ -72,7 +72,7 @@ const PageStart = () => {
         { id: 3, name: 'of members choose the default investment option', value: '70%' },
     ]
 
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
         <>
@@ -131,7 +131,7 @@ const PageStart = () => {
                         <a href="#The-Challenge" className="text-sm/6 font-semibold text-gray-900">
                             The Challenge
                         </a>
-                        <Link to="/not-found" className="text-sm/6 font-semibold text-gray-900">
+                        <Link to="/publications" className="text-sm/6 font-semibold text-gray-900">
                             Publications
                         </Link>
                     </PopoverGroup>
@@ -146,13 +146,13 @@ const PageStart = () => {
                     <div className="fixed inset-0 z-10" />
                         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                         <div className="flex items-center justify-between">
-                            <a href="#" className="-m-1.5 p-1.5">
+                            <Link href="/" className="-m-1.5 p-1.5">
                                 <img
                                 alt=""
                                 src={logo}
                                 className="h-8 w-auto"
                                 />
-                            </a>
+                            </Link>
                             <button
                             type="button"
                             onClick={() => setMobileMenuOpen(false)}
@@ -164,46 +164,37 @@ const PageStart = () => {
                         </div>
                     <div className="mt-6 flow-root">
                         <div className="-my-6 divide-y divide-gray-500/10">
-                        <div className="space-y-2 py-6">
-                            <Disclosure as="div" className="-mx-3">
-                                <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                                    Our Solutions
-                                    <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
-                                </DisclosureButton>
-                                <DisclosurePanel className="mt-2 space-y-2">
-                                {[...products].map((item) => (
-                                    <DisclosureButton
-                                        key={item.name}
-                                        as="a"
-                                        href={item.href}
-                                        className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                                    >
-                                        {item.name}
+                            <div className="space-y-2 py-6">
+                                <Disclosure as="div" className="-mx-3">
+                                    <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                                        Our Solutions
+                                        <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
                                     </DisclosureButton>
-                                ))}
-                                </DisclosurePanel>
-                            </Disclosure>
-                            <a
-                            href="#The-Challenge"
-                            className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                            >
-                            The Challenge
-                            </a>
-                            <a
-                            href="#"
-                            className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                            >
-                            Publications
-                            </a>
-                        </div>
-                        <div className="py-6">
-                            <a
-                            href="#"
-                            className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                            >
-                            Set up your account
-                            </a>
-                        </div>
+                                    <DisclosurePanel className="mt-2 space-y-2">
+                                    {[...products].map((item) => (
+                                        <DisclosureButton
+                                            key={item.name}
+                                            as="a"
+                                            href={item.href}
+                                            className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                        >
+                                            {item.name}
+                                        </DisclosureButton>
+                                    ))}
+                                    </DisclosurePanel>
+                                </Disclosure>
+                                <a href="#The-Challenge" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                                    The Challenge
+                                </a>
+                                <Link to="/publications" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                                    Publications
+                                </Link>
+                            </div>
+                            <div className="py-6">
+                                <a href='#demonstration' className="text-sm/6 font-semibold text-gray-900">
+                                    Set up your account <span aria-hidden="true">&rarr;</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     </DialogPanel>
@@ -393,7 +384,7 @@ const PageStart = () => {
                         Start demonstration
                     </Link>
                     <Link 
-                        to="/not-found"
+                        to="/publications"
                         className="text-sm/6 font-semibold text-[#F61563]">
                         View publications <span aria-hidden="true">→</span>
                     </Link>

@@ -180,7 +180,7 @@ const PageInvest = () => {
                         <Link to="/" className="text-sm/6 font-semibold text-gray-900">
                             The Challenge
                         </Link>
-                        <Link to="/not-found" className="text-sm/6 font-semibold text-gray-900">
+                        <Link to="/publications" className="text-sm/6 font-semibold text-gray-900">
                             Publications
                         </Link>
                     </PopoverGroup>
@@ -232,26 +232,26 @@ const PageInvest = () => {
                                 ))}
                                 </DisclosurePanel>
                             </Disclosure>
-                            <a
-                            href="#The-Challenge"
-                            className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                            <Link
+                                to="/"
+                                className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                             >
-                            The Challenge
-                            </a>
-                            <a
-                            href="#"
-                            className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                The Challenge
+                            </Link>
+                            <Link
+                                to="/publications"
+                                className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                             >
-                            Publications
-                            </a>
+                                Publications
+                            </Link>
                         </div>
                         <div className="py-6">
-                            <a
-                            href="#"
-                            className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                            <Link
+                                to="/"
+                                className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                             >
-                            Set up your account
-                            </a>
+                                Exit back to home
+                            </Link>
                         </div>
                         </div>
                     </div>
